@@ -36,7 +36,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     // phân quyền
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers( "/login", "/register").permitAll()
+        http.authorizeRequests().antMatchers( "/login/**", "/register/**").permitAll()
                 .and().authorizeRequests().antMatchers("/admin/**").permitAll()
                 .and().authorizeRequests().antMatchers("/user/**").permitAll()
                 .and().csrf().disable();

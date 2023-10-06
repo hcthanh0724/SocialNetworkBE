@@ -30,4 +30,17 @@ public class AccountService implements IAccountService {
         Account account = iAccountRepo.getAccountByUsernameAndPassword(username,password);
         return account;
     }
+
+    @Override
+    public Account changePassword(String username,String password) {
+        Account account = iAccountRepo.getAccountByUsername(username);
+        account.setPassword(password);
+        iAccountRepo.save(account);
+        return account;
+    }
+
+    @Override
+    public Account findAccountByUsername(String username) {
+        return iAccountRepo.getAccountByUsername(username);
+    }
 }

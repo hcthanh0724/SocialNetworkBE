@@ -46,4 +46,9 @@ public class LoginController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorMessage);
         }
     }
+
+    @PostMapping("/changePassword")
+    public ResponseEntity<?> changePassword(@RequestParam String username, @RequestParam String password){
+        return new ResponseEntity<>(iAccountService.changePassword(username,password), HttpStatus.ACCEPTED);
+    }
     }
