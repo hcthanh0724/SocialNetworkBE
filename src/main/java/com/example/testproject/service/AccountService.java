@@ -20,6 +20,10 @@ public class AccountService implements IAccountService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Account account = iAccountRepo.getAccountByUsername(username);
+        if (account == null) {
+            throw new UsernameNotFoundException("User not found");
+        }
+
         List<GrantedAuthority> roles = new ArrayList<>();
         roles.add((GrantedAuthority) account.getRole());
         return new User(account.getUsername(), account.getPassword(), roles);
